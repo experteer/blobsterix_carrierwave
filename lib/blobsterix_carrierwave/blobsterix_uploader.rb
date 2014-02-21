@@ -1,3 +1,4 @@
+# encoding: utf-8
 class BlobsterixUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MimeTypes
@@ -34,7 +35,6 @@ class BlobsterixUploader < CarrierWave::Uploader::Base
 
   def custom
     #BlobsterixAdhocTransforms::Generator.new(:host => fog_credentials[:host], :uploader => self, :path => path)
-
     asset_host.set_path(path).clear_trafo
   end
 

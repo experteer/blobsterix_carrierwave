@@ -1,5 +1,8 @@
 require "blobsterix_carrierwave/version"
 
+require "carrierwave"
+require "fog"
+
 require "blobsterix_carrierwave/blobsterix_carrierwave"
 require "blobsterix_carrierwave/blobsterix_storage"
 require "blobsterix_carrierwave/blobsterix_transforms"

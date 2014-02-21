@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Blobsterix
   module CarrierWave
     #crazy version stuff not needed anymore

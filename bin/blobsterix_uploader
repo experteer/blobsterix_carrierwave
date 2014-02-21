@@ -1,0 +1,19 @@
+require "fileutils"
+puts "Blobsterix upload generator"
+if ARGV.length == 0
+  puts "Usage: "
+  puts "\tblobsterix_uploader uploader_name"
+  exit
+end
+
+
+template = File.read(File.join(File.dirname(__FILE__), "../config/uploader_template.rb"))
+template = template.gsub("$UploaderName", ARGV[0])
+
+if !File.exist?(File.join(Dir.pwd, "app/uploaders/#{ARGV[0].downcase}_uploader.rb"))
+  FileUtils.mkdir_p(File.join(Dir.pwd, "app/uploaders"))
+  File.write(File.join(Dir.pwd, "app/uploaders/#{ARGV[0].downcase}_uploader.rb"), template)
+  puts "Generated new uploader"
+else
+  puts "Uploader already exists"
+end

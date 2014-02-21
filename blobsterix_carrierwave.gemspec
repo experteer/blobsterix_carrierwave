@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["suddani@googlemail.com"]
   gem.description   = "This gem is used to create a carrierwave binding to a blobsterix server"
   gem.summary       = "This gem is used to create a carrierwave binding to a blobsterix server"
-  gem.homepage      = "experteer.com"
+  gem.homepage      = "http://experteer.com"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
