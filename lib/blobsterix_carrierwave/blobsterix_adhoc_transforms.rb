@@ -1,0 +1,97 @@
+module BlobsterixAdhocTransforms
+  extend BlobsterixTransforms
+  class Generator
+    def initialize(options={})
+      # host
+      # bucket
+      # path
+      # trafos <- array with transform methods and 
+      # uploader <- BlobsterixCarrierWaveUploader
+      @options = options
+      @chain=[]
+
+      #init the trafos
+      (@options[:trafos] || []).each{|t|
+        c.send(t[0], t[1])
+      }
+    end
+
+    def clear_trafo
+      @chain = []
+      self
+    end
+
+    def set_path(path)
+      @options[:path] = path
+      self
+    end
+
+    def url(path=nil)
+      @options[:path] = path if path
+      puts "Path is: #{@options[:path]}"
+      "#{asset_host}#{encoded_path}"
+    end
+
+    def url_s3(path=nil, use_subdomain=true)
+      @options[:path] = path if path
+
+      "#{s3_host(use_subdomain)}#{encoded_path}"
+    end
+
+    def transform
+      @chain.map{|trafo|
+        "#{trafo[:method]}_#{trafo[:args]}"
+      }.join(",")
+    end
+
+    def has_transform?
+      !@chain.empty?
+    end
+
+    def method_missing(method, *args)
+      if BlobsterixAdhocTransforms.respond_to?(method)
+        @chain << BlobsterixAdhocTransforms.send(method, *args)
+      else
+        #shit!
+      end
+      self
+    end
+
+    private
+      def version
+        @options[:version] || 1        
+      end
+      def encoded_path
+        @options[:path] || ""
+      end
+      def s3_host(use_subdomain)
+        if (use_subdomain)
+          "http://#{bucket}.#{@options[:host]}/"
+        else
+          "http://#{@options[:host]}/#{bucket}/"
+        end
+      end
+      def asset_host
+
+        host = @options[:host] || ""
+        if host.respond_to? :call and @options.has_key?(:uploader)
+          host.call(self)
+        else
+          if has_transform?
+            "http://#{host}/blob/v#{version}/#{transform}.#{bucket}/"
+          else
+            "http://#{host}/blob/v#{version}/#{bucket}/"
+          end
+        end
+
+        #"http://localhost:9000/blob/v1/#{trafo}.#{uploader.fog_directory}/"
+      end
+      def bucket()
+        if @options.has_key?(:uploader)
+          @options[:uploader].fog_directory
+        else
+          @options[:bucket] || "main"
+        end
+      end
+  end
+end 
