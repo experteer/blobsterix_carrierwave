@@ -40,9 +40,9 @@ module BlobsterixAdhocTransforms
       end
 
       def transform
-        @chain.map{|trafo|
+        BlobsterixCarrierwave.encrypt_trafo(@chain.map{|trafo|
           "#{trafo[:method]}_#{trafo[:args]}"
-        }.join(",")
+        }.join(","))
       end
 
       def has_transform?

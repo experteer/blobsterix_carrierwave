@@ -11,4 +11,7 @@ require "blobsterix_carrierwave/blobsterix_uploader"
 
 module BlobsterixCarrierwave
   # Your code goes here...
+  def self.encrypt_trafo(trafo_string)
+    trafo_string
+  end
 end
