@@ -24,4 +24,9 @@ module BlobsterixTransforms
       :args => option
     }
   end
+  def strip()
+    {
+      :method => "strip"
+      :args => ""
+    }
 end
