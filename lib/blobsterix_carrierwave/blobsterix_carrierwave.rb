@@ -4,38 +4,38 @@ module Blobsterix
     #crazy version stuff not needed anymore
     def recreate_versions!
       # Do nothing
-      puts "Recreate versions"
+      # puts "Recreate versions"
     end
 
     def cache_versions!(new_file=nil)
       # Do nothing
-      puts "Cache versions"
+      # puts "Cache versions"
     end
 
     def store_versions!(new_file=nil)
       # Do nothing
-      puts "Store versions"
+      # puts "Store versions"
     end
 
     def remove_versions!(new_file=nil)
       # Do nothing
-      puts "Remove versions"
+      # puts "Remove versions"
     end
 
     def retrieve_versions_from_cache!(new_file=nil)
       # Do nothing
-      puts "retrieve_versions_from_cache: #{version_name}"
+      # puts "retrieve_versions_from_cache: #{version_name}"
     end
 
     def retrieve_versions_from_store!(new_file=nil)
       # Do nothing
-      puts "retrieve_versions_from_store: #{new_file.inspect}, #{version_name}"
+      # puts "retrieve_versions_from_store: #{new_file.inspect}, #{version_name}"
       super(new_file)
     end
 
     def process!(new_file=nil)
       # Do nothing
-      puts "Doing process for #{new_file.inspect} on #{self.inspect}"
+      # puts "Doing process for #{new_file.inspect} on #{self.inspect}"
     end
 
     def remote_process!()
@@ -55,7 +55,7 @@ module Blobsterix
     end
 
     def remote_processors()
-      puts "Version: #{version_name}"
+      # puts "Version: #{version_name}"
       if enable_processing and version_name
         self.class.processors.map{|method, args, condition|[method, args]}
       else

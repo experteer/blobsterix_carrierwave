@@ -1,8 +1,6 @@
 # encoding: utf-8
 
 class $UploaderNameUploader < BlobsterixUploader
-  # this includes the transforms into the uploader
-  include BlobsterixTransforms
 
   # When setting a global process it is applied when 
   # uploaded to a blobsterix server

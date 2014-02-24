@@ -29,7 +29,6 @@ module BlobsterixAdhocTransforms
 
       def url(path=nil)
         @options[:path] = path if path
-        puts "Path is: #{@options[:path]}"
         "#{asset_host}#{encoded_path}"
       end
 

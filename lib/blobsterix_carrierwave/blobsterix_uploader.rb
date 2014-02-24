@@ -7,14 +7,16 @@ class BlobsterixUploader < CarrierWave::Uploader::Base
   #storage :file
   storage CarrierWave::Storage::BlobsterixStore
 
+  include BlobsterixTransforms
+
   after :store, :done_store
   before :store, :before_store
 
   def before_store obj
-    puts "Start with storing"
+    #puts "Start with storing"
   end
   def done_store obj
-    puts "Done with storing"
+    #puts "Done with storing"
   end
 
   # Override the directory where uploaded files will be stored.

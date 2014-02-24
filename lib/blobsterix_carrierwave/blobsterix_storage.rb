@@ -19,7 +19,7 @@ module CarrierWave
       #
       # Create and save a file instance to your engine.
       def store!(file)
-        puts "Called store: #{file.inspect} with #{uploader.processors}"
+        # puts "Called store: #{file.inspect} with #{uploader.processors}"
         f = File.new(uploader, self, uploader.store_path)
         f.store(file)
         f
@@ -27,7 +27,7 @@ module CarrierWave
 
       # Load and return a file instance from your engine.
       def retrieve!(identifier)
-        puts "Called retrieve: #{identifier.class}:#{identifier}"
+        # puts "Called retrieve: #{identifier.class}:#{identifier}"
         File.new(uploader, self, uploader.store_path(identifier))
       end
 
@@ -38,9 +38,9 @@ module CarrierWave
         end
 
         def url(options = {})
-          puts "Get file url: #{options}, #{@uploader.version_name}"
+          # puts "Get file url: #{options}, #{@uploader.version_name}"
           u = super(options)
-          puts "Url is now: #{u}"
+          # puts "Url is now: #{u}"
           u
         end
 
@@ -76,7 +76,7 @@ module CarrierWave
         end
         def exists?
           url = BlobsterixAdhocTransforms::Generator.new(:host => @uploader.fog_credentials[:connection_options][:proxy].gsub("http://",""), :uploader => @uploader, :path => @path).url_s3(nil, false)
-          puts "Check url: #{url}"
+          # puts "Check url: #{url}"
           uri = URI(url)
           return_code = 404
           Net::HTTP.start(uri.host, uri.port) do |http|
