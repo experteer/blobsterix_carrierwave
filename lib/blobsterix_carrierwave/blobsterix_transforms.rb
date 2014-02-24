@@ -12,7 +12,7 @@ module BlobsterixTransforms
       :args => "#{angle}"
     }
   end
-  def raw_image()
+  def raw_image(e)
     {
       :method => "raw",
       :args => ""
@@ -24,9 +24,10 @@ module BlobsterixTransforms
       :args => option
     }
   end
-  def strip()
+  def strip(e)
     {
-      :method => "strip"
+      :method => "strip",
       :args => ""
     }
+  end
 end
