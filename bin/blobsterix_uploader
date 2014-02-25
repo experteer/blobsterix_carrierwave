@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require "fileutils"
 puts "Blobsterix upload generator"
 if ARGV.length == 0
