@@ -55,7 +55,7 @@ module CarrierWave
             :collection => directory.files,
             :connection => directory.files.connection
           }.merge(@uploader.fog_attributes))
-          @file.metadata={"x-amz-meta-trafo" => @uploader.remote_process!}
+          @file.metadata={"x-amz-meta-trafo" => @uploader.remote_process!(false)}
           @file.save()
           fog_file.close if fog_file && !fog_file.closed?
           true

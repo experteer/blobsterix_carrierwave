@@ -9,7 +9,6 @@ module BlobsterixAdhocTransforms
         # trafos <- array with transform methods and 
         # uploader <- BlobsterixCarrierWaveUploader
         @options = options || {}
-        @options[:transform_param] ||= false
         @chain=[]
 
         #init the trafos
@@ -30,7 +29,7 @@ module BlobsterixAdhocTransforms
 
       def url(path=nil)
         @options[:path] = path if path
-        "#{asset_host}#{encoded_path}#{is_transform_param? && has_transform? ? "?trafo=#{transform}" : ""}"
+        "#{asset_host}#{encoded_path}"
       end
 
       def url_s3(path=nil, use_subdomain=true)
@@ -39,18 +38,15 @@ module BlobsterixAdhocTransforms
         "#{s3_host(use_subdomain)}#{encoded_path}"
       end
 
-      def transform
-        BlobsterixCarrierwave.encrypt_trafo(@chain.map{|trafo|
+      def transform(encrypt=true)
+        trafo = @chain.map{|trafo|
           "#{trafo[:method]}_#{trafo[:args]}"
-        }.join(","))
+        }.join(",")
+        encrypt ? BlobsterixCarrierwave.encrypt_trafo(trafo, self) : trafo
       end
 
       def has_transform?
         !@chain.empty?
-      end
-
-      def is_transform_param?
-        @options[:transform_param]
       end
 
       def method_missing(method, *args)
@@ -60,6 +56,10 @@ module BlobsterixAdhocTransforms
           #shit!
         end
         self
+      end
+
+      def uploader
+        @options[:uploader]
       end
 
       private
@@ -82,7 +82,7 @@ module BlobsterixAdhocTransforms
           if host.respond_to? :call and @options.has_key?(:uploader)
             host.call(self)
           else
-            if has_transform? && !is_transform_param?
+            if has_transform?
               "http://#{host}/blob/v#{version}/#{transform}.#{bucket}/"
             else
               "http://#{host}/blob/v#{version}/#{bucket}/"

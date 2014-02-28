@@ -38,7 +38,7 @@ module Blobsterix
       # puts "Doing process for #{new_file.inspect} on #{self.inspect}"
     end
 
-    def remote_process!()
+    def remote_process!(encrypt=true)
       if enable_processing
         #Deactivate conditional stuff
         # self.class.processors.each do |method, args, condition|
@@ -48,7 +48,7 @@ module Blobsterix
         #   puts "Do: #{method} with #{args.inspect}"
         #   trafos.send(method, *args)
         # end
-        BlobsterixAdhocTransforms::Generator.new(:trafos => self.class.processors.map{|method, args, condition|[method, args]}).transform
+        BlobsterixAdhocTransforms::Generator.new(:trafos => self.class.processors.map{|method, args, condition|[method, args]}).transform(encrypt)
       else
         ""
       end
