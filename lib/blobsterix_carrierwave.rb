@@ -11,7 +11,11 @@ require "blobsterix_carrierwave/blobsterix_uploader"
 
 module BlobsterixCarrierwave
   # Your code goes here...
-  def self.encrypt_trafo(trafo_string)
-    trafo_string
+  def self.encrypt_trafo(trafo_string=nil)
+    @encrypt_trafo||=lambda{|t_string| t_string}
+    trafo_string ? @encrypt_trafo.call(trafo_string) : @encrypt_trafo
   end
+
+  def self.encrypt_trafo=(obj)
+    @encrypt_trafo=obj
 end
