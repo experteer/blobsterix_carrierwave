@@ -82,8 +82,9 @@ module BlobsterixAdhocTransforms
           if host.respond_to? :call and @options.has_key?(:uploader)
             host.call(self)
           else
-            if has_transform?
-              "http://#{host}/blob/v#{version}/#{transform}.#{bucket}/"
+            trafo = transform
+            if trafo.length > 0
+              "http://#{host}/blob/v#{version}/#{trafo}.#{bucket}/"
             else
               "http://#{host}/blob/v#{version}/#{bucket}/"
             end
