@@ -36,7 +36,6 @@ class BlobsterixUploader < CarrierWave::Uploader::Base
   end
 
   def custom
-    #BlobsterixAdhocTransforms::Generator.new(:host => fog_credentials[:host], :uploader => self, :path => path)
     asset_host.set_path(path).clear_trafo
   end
 
