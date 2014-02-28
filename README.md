@@ -31,8 +31,8 @@ Setup:
                                                                                                    #won't mess with dynamic DNS, THIS IS THE REAL upload host
       :endpoint               => "http://blob.localhost.local" # same as host, won't ever be used
     }
-    config.fog_directory  = 'pjpp'                     # required
-    config.fog_public     = true                                   # optional, defaults to true
+    config.fog_directory  = 'pjpp'                     # required, can be overridden in each uploader
+    config.fog_public     = true                                   # optional, defaults to true, and actually not used here anymore.
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
     config.delete_tmp_file_after_storage = true
     config.remove_previously_stored_files_after_update = true
