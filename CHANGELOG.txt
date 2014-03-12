@@ -1,2 +1,4 @@
+= 0.0.4
+ * fixing scale options
 = 0.0.3
  * first rc

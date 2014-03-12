@@ -1,10 +1,13 @@
 # encoding: utf-8
 module BlobsterixTransforms
-  def scale(width, height = "")
-    {
+  def scale(args)
+     args=[args].flatten
+     width=args[0]
+     height=args[1]
+     {
       :method => "resize",
       :args => "#{width}x#{height}"
-    }
+     }
   end
   def rotate(angle)
     {
