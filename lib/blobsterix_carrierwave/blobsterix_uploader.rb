@@ -56,7 +56,7 @@ class BlobsterixUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  #process :scale => ["", "300"]
+  #process :resize => ["", "300"]
   #process :rotate => 45
   #
 
@@ -64,11 +64,11 @@ class BlobsterixUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-  #   process :scale => [50, "50!"]
+  #   process :resize => [50, "50!"]
   # end
 
   # version :face do
-  #   process :scale => [10, 10]
+  #   process :resize => [10, 10]
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.

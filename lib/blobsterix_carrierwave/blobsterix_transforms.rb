@@ -1,6 +1,15 @@
 # encoding: utf-8
 module BlobsterixTransforms
-  def scale(args)
+  def resize(args)
+     args=[args].flatten
+     width=args[0]
+     height=args[1]
+     {
+      :method => "resize",
+      :args => "#{width}x#{height}"
+     }
+  end
+  def resize_max(args)
      args=[args].flatten
      width=args[0]
      height=args[1]

@@ -1,3 +1,6 @@
+= 0.0.5
+ * adding resize_max
+ * renaming scale to resize
 = 0.0.4
  * fixing scale options
 = 0.0.3

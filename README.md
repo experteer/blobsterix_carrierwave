@@ -48,7 +48,7 @@ Setup:
   # The usage of the uploader is like the normal carrierwave.
   class CompanyLogoUploader < BlobsterixUploader
 
-    process :scale => ["", "300"]
+    process :resize => ["", "300"]
     process :strip
     process :set_format => "png"
 
@@ -80,7 +80,7 @@ Setup:
 
   # you can do
 
-    company_logo.custom.scale(200).rotate(25).url
+    company_logo.custom.resize(200).rotate(25).url
 
   # this will generate the url and blobsterix will generate the image on the fly.
 

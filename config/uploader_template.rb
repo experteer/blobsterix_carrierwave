@@ -4,7 +4,7 @@ class $UploaderNameUploader < BlobsterixUploader
 
   # When setting a global process it is applied when 
   # uploaded to a blobsterix server
-  #process :scale => ["", "300"]
+  #process :resize => ["", "300"]
 
   # This sets a directory inside a bucket
   # only used for cosmetic reasons
@@ -24,7 +24,7 @@ class $UploaderNameUploader < BlobsterixUploader
   # on the server when requested and are not generated
   # when uploading
   #version :raw do
-  #  process :scale => 100
+  #  process :resize => 100
   #  process :rotate => 25
   #  process :set_format => "raw"
   #end
