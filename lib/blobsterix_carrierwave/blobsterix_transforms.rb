@@ -14,7 +14,7 @@ module BlobsterixTransforms
      width=args[0]
      height=args[1]
      {
-      :method => "resize",
+      :method => "resize_max",
       :args => "#{width}x#{height}"
      }
   end
