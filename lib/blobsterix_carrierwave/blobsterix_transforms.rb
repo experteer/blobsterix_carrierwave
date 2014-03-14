@@ -9,7 +9,7 @@ module BlobsterixTransforms
       :args => "#{width}x#{height}"
      }
   end
-  def resize_max(args)
+  def resizemax(args)
      args=[args].flatten
      width=args[0]
      height=args[1]
