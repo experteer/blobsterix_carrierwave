@@ -57,7 +57,13 @@ module Blobsterix
     def remote_processors()
       # puts "Version: #{version_name}"
       if enable_processing and version_name
-        self.class.processors.map{|method, args, condition|[method, args]}
+        current_processor = self.class
+        remote_processor_array = []
+        until current_processor.parent == Object
+          remote_processor_array+=current_processor.processors.map{|method, args, condition|[method, args]}
+          current_processor = current_processor.parent
+        end
+        remote_processor_array
       else
         []
       end
