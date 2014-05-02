@@ -8,6 +8,7 @@ require "blobsterix_carrierwave/blobsterix_storage"
 require "blobsterix_carrierwave/blobsterix_transforms"
 require "blobsterix_carrierwave/blobsterix_adhoc_transforms"
 require "blobsterix_carrierwave/blobsterix_uploader"
+require "blobsterix_carrierwave/blobsterix_uploader_version"
 
 module BlobsterixCarrierwave
   # Your code goes here...
