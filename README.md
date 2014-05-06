@@ -84,6 +84,12 @@ Setup:
 
   # this will generate the url and blobsterix will generate the image on the fly.
 
+## Patches
+
+In case you want to recreate uploader from saved instances you need fixed class names. To achieve this simply do:
+
+  require "blobsterix_carrierwave/patches/carrierwave_090_uploader_version_name"
+
 ## Contributing
 
 1. Fork it

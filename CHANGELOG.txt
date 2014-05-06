@@ -1,3 +1,5 @@
+= 0.0.9
+ * made the version name change optional. found in patches folder
 = 0.0.8
  * changed uploaded version class naming. So they can be recreated from sessions.(needs to be changed when switching carrierwave version!!)
 = 0.0.7
