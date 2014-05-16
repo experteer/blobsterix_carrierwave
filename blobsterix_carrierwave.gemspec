@@ -15,6 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = BlobsterixCarrierwave::VERSION
 
-  gem.add_dependency "carrierwave", "~> 0.9.0"
-  gem.add_dependency "fog"        , "~> 1.19.0"
+  gem.add_dependency "carrierwave", "~> 0.10.0"
+  gem.add_dependency "fog"        , "~> 1.22.0"
 end
