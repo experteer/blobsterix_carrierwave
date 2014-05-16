@@ -53,7 +53,7 @@ module CarrierWave
             :key          => path,
             :public       => @uploader.fog_public,
             :collection => directory.files,
-            :connection => directory.files.connection
+            :service => directory.files.service
           }.merge(@uploader.fog_attributes))
           @file.metadata={"x-amz-meta-trafo" => @uploader.remote_process!(false)}
           @file.save()
