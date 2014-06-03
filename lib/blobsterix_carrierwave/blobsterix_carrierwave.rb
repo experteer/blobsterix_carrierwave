@@ -48,7 +48,7 @@ module Blobsterix
         #   puts "Do: #{method} with #{args.inspect}"
         #   trafos.send(method, *args)
         # end
-        BlobsterixAdhocTransforms::Generator.new(:trafos => self.class.processors.map{|method, args, condition|[method, args]}).transform(encrypt)
+        BlobsterixAdhocTransforms::Generator.new(:uploader => self,:trafos => self.class.processors.map{|method, args, condition|[method, args]}).transform(encrypt)
       else
         ""
       end
