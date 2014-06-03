@@ -13,7 +13,7 @@ module BlobsterixAdhocTransforms
 
         #init the trafos
         (@options[:trafos] || []).each{|t|
-          c.send(t[0], t[1])
+          self.send(t[0], t[1])
         }
       end
 
@@ -52,8 +52,9 @@ module BlobsterixAdhocTransforms
       def method_missing(method, *args)
         if BlobsterixAdhocTransforms.respond_to?(method)
           @chain << BlobsterixAdhocTransforms.send(method, *args)
-        else
-          #shit!
+        elsif uploader && uploader.respond_to?(method)
+          specific_trafo = uploader.send(method, *args)
+          @chain << specific_trafo if specific_trafo && specific_trafo.kind_of?(Hash)
         end
         self
       end
