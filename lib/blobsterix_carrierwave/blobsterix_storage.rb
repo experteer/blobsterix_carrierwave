@@ -66,11 +66,22 @@ module CarrierWave
         end
 
         def read
-          super()
+          @read||=load_file_from_blobsterix
         end
+
+        def load_file_from_blobsterix
+          uri = URI(public_url)
+          body = Net::HTTP.start(uri.host, uri.port) do |http|
+            response = http.get uri.path
+            response.body
+          end
+          body||""
+        end
+
         def size
-          super()
+          read.size
         end
+
         def delete
           super()
         end
