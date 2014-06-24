@@ -1,7 +1,7 @@
 # encoding: utf-8
 class BlobsterixUploader < CarrierWave::Uploader::Base
 
-  include CarrierWave::MimeTypes
+  #include CarrierWave::MimeTypes
   include Blobsterix::CarrierWave
 
   #storage :file
