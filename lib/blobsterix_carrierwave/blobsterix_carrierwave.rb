@@ -59,7 +59,7 @@ module Blobsterix
       if enable_processing and version_name
         current_processor = self.class
         remote_processor_array = []
-        until current_processor.parent == Object
+        until current_processor.parent.parent == Object
           remote_processor_array+=current_processor.processors.map{|method, args, condition|[method, args]}
           current_processor = current_processor.parent
         end
