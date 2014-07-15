@@ -1,4 +1,4 @@
 module BlobsterixCarrierwave
-  VERSION = "1.0.5"
+  VERSION = "0.0.15"
 end
 
