@@ -1,3 +1,5 @@
+= 1.0.6
+  * fixing bug that caused to many processors to fire
 = 1.0.0
   * updated fog and carrierwave.
   BREAKING CHANGES:
