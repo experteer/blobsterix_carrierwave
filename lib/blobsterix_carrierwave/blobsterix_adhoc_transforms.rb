@@ -11,6 +11,9 @@ module BlobsterixAdhocTransforms
         @options = options || {}
         @chain=[]
 
+        # activate relative ssl protocoll as standard option
+        @options[:relative_ssl] = true unless @options.has_key?(:relative_ssl)
+
         #init the trafos
         (@options[:trafos] || []).each{|t|
           self.send(t[0], t[1])
@@ -77,6 +80,9 @@ module BlobsterixAdhocTransforms
             "http://#{@options[:host]}/#{bucket}/"
           end
         end
+        def http
+          @options[:ssl] ? "https:" : (@options[:relative_ssl] ? "" : "http:")
+        end
         def asset_host
 
           host = @options[:host] || ""
@@ -85,9 +91,9 @@ module BlobsterixAdhocTransforms
           else
             trafo = transform
             if trafo.length > 0
-              "http://#{host}/blob/v#{version}/#{trafo}.#{bucket}/"
+              "#{http}//#{host}/blob/v#{version}/#{trafo}.#{bucket}/"
             else
-              "http://#{host}/blob/v#{version}/#{bucket}/"
+              "#{http}//#{host}/blob/v#{version}/#{bucket}/"
             end
           end
 

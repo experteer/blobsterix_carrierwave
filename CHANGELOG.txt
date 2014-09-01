@@ -1,3 +1,5 @@
+= 1.0.7
+  * added option to generate urls for blobsterix in a protocol relative way(i.e "//" instead of "http/https://")
 = 1.0.6
   * fixing bug that caused to many processors to fire
 = 1.0.0
