@@ -30,9 +30,14 @@ module BlobsterixAdhocTransforms
         self
       end
 
+      def query(args={})
+        query_options.merge!(args)
+        self
+      end
+
       def url(path=nil)
         @options[:path] = path if path
-        "#{asset_host}#{encoded_path}"
+        "#{asset_host}#{encoded_path}#{query_options_string}"
       end
 
       def url_s3(path=nil, use_subdomain=true)
@@ -98,6 +103,28 @@ module BlobsterixAdhocTransforms
           end
 
           #"http://localhost:9000/blob/v1/#{trafo}.#{uploader.fog_directory}/"
+        end
+        def query_options
+          @query||={}
+        end
+        def query_options=(opts={})
+          @query=opts
+        end
+        def query_options_string
+          puts "Query!!!!!: #{query_options.inspect}"
+          if uploader.respond_to?(:force_filename)
+            if query_options.empty?
+              "?filename=#{uploader.force_filename}"
+            else
+              "?filename=#{uploader.force_filename}&#{query_options.map {|i,v| "#{i}=#{v}" }.join("&")}"
+            end
+          else
+            if query_options.empty?
+              ""
+            else
+              "?#{query_options.map {|i,v| "#{i.to_s}=#{v.to_s}" }.join("&")}"
+            end
+          end
         end
         def bucket()
           if @options.has_key?(:uploader)

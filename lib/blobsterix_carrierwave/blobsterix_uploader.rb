@@ -25,6 +25,10 @@ class BlobsterixUploader < CarrierWave::Uploader::Base
     nil
   end
 
+  def query(args={})
+    asset_host.set_path(path).query(args)
+  end
+
   def custom
     asset_host.set_path(path).clear_trafo
   end
