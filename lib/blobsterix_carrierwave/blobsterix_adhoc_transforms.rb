@@ -111,7 +111,7 @@ module BlobsterixAdhocTransforms
           @query=opts
         end
         def query_options_string
-          puts "Query!!!!!: #{query_options.inspect}"
+          # puts "Query!!!!!: #{query_options.inspect}"
           if uploader.respond_to?(:force_filename)
             if query_options.empty?
               "?filename=#{uploader.force_filename}"
