@@ -18,6 +18,29 @@ module BlobsterixTransforms
       :args => "#{width}x#{height}"
      }
   end
+
+  # extent takes 3 params in a hash, :background, :gravity and :size
+  #
+  # size is mandatory, background
+  #
+  # @param [Hash] args
+  # @option args [String] :size
+  # @option args [String] :background  (defaults to "transparent")
+  # @option args [String] :gravity (defaults to "center")
+  def extent(args)
+    # only allow gravity, background and size options
+    args.delete_if do |key, value|
+      !([:gravity, :background, :size].include?(key))
+    end
+    args[:gravity] = "center" unless args[:gravity]
+    args[:background] = "transparent" unless args[:background]
+    send = args.map{|key, value| "#{key}=#{value}"}.join(";") + ";"
+    {
+        :method => "extent",
+        :args   => send
+    }
+  end
+
   def rotate(angle)
     {
       :method => "rotate",
