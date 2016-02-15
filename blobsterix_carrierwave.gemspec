@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = BlobsterixCarrierwave::VERSION
 
   gem.add_dependency "carrierwave", "~> 0.10.0"
-  gem.add_dependency "fog"        , "~> 1.22.0"
+  gem.add_dependency "fog"        , "1.37"
 end
