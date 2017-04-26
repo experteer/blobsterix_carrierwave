@@ -19,6 +19,16 @@ module BlobsterixTransforms
      }
   end
 
+  def blur(args)
+     args=[args].flatten
+     radius=args[0]
+     sigma=args[1]
+     {
+      :method => "blur",
+      :args => "#{radius}x#{sigma}"
+     }
+  end
+
   # extent takes 3 params in a hash, :background, :gravity and :size
   #
   # size is mandatory, background
@@ -47,18 +57,28 @@ module BlobsterixTransforms
       :args => "#{angle}"
     }
   end
+
   def raw_image(e)
     {
       :method => "raw",
       :args => ""
     }
   end
+
   def set_format(format, option = "")
     {
-      :method => format,
-      :args => option
+      :method => format.to_s,
+      :args => option.to_s
     }
   end
+
+  def apply(method, option = "")
+    {
+      :method => method.to_s,
+      :args => option.to_s
+    }
+  end
+
   def strip(e)
     {
       :method => "strip",
