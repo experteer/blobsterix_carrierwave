@@ -71,7 +71,7 @@ module CarrierWave
 
         def load_file_from_blobsterix
           uri = URI(public_url)
-          body = Net::HTTP.start(uri.host, uri.port) do |http|
+          body = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
             response = http.get uri.path
             response.body
           end
