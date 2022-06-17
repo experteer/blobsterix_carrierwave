@@ -61,7 +61,7 @@ module Blobsterix
         remote_processor_array = []
         until current_processor.superclass == BlobsterixUploader
           remote_processor_array+=current_processor.processors.map{|method, args, condition|[method, args]}
-          current_processor = current_processor.parent
+          current_processor = current_processor.module_parent
         end
         remote_processor_array
       else
