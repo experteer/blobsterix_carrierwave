@@ -2,6 +2,7 @@ require "blobsterix_carrierwave/version"
 
 require "carrierwave"
 require "fog"
+require 'carrierwave/storage/fog'
 
 require "blobsterix_carrierwave/blobsterix_carrierwave"
 require "blobsterix_carrierwave/blobsterix_storage"

@@ -1,3 +1,5 @@
+= 1.1.1
+  * updated carrierwave
 = 1.0.8
   * added option to pass query string parameters
 = 1.0.7
