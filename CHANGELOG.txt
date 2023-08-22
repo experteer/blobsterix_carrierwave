@@ -1,5 +1,7 @@
 = 1.1.1
   * updated carrierwave
+  BREAKING CHANGES:
+    * in case you used the uploader version patch before you have to now include the patches/carrierwave_1x_... version of the patch.
 = 1.0.8
   * added option to pass query string parameters
 = 1.0.7

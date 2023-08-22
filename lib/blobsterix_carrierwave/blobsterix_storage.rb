@@ -27,21 +27,17 @@ module CarrierWave
 
       # Load and return a file instance from your engine.
       def retrieve!(identifier)
-        # puts "Called retrieve: #{identifier.class}:#{identifier}"
         File.new(uploader, self, uploader.store_path(identifier))
       end
 
       # Subclass or duck-type CarrierWave::SanitizedFile ; responsible for storing the file to your engine.
       class File < Fog::File
         def initialize(uploader, base, path)
-          @uploader, @base, @path = uploader, base, path
+          @uploader, @base, @path, @content_type = uploader, base, path, nil
         end
 
         def url(options = {})
-          # puts "Get file url: #{options}, #{@uploader.version_name}"
-          u = super(options)
-          # puts "Url is now: #{u}"
-          u
+          super(options)
         end
 
         def store(new_file)
@@ -66,7 +62,7 @@ module CarrierWave
         end
 
         def read
-          @read||=load_file_from_blobsterix
+          @read ||= load_file_from_blobsterix
         end
 
         def load_file_from_blobsterix
@@ -75,19 +71,19 @@ module CarrierWave
             response = http.get uri.path
             response.body
           end
-          body||""
+          body || ""
         end
 
         def size
-          read.size
+          read.present? ? read.size : 0
         end
 
         def delete
           super()
         end
+
         def exists?
           url = BlobsterixAdhocTransforms::Generator.new(:host => @uploader.fog_credentials[:connection_options][:proxy].gsub("http://",""), :uploader => @uploader, :path => @path).url_s3(nil, false)
-          # puts "Check url: #{url}"
           uri = URI(url)
           return_code = 404
           Net::HTTP.start(uri.host, uri.port) do |http|
