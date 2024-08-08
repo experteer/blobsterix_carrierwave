@@ -1,4 +1,5 @@
-# encoding: utf-8
+require "carrierwave/storage/fog"
+
 module CarrierWave
   module Storage
     class BlobsterixStore < Fog
